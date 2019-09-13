@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+  <div class="view_content">
+    <div class="modal-body">
+      <form name="potntial_auctionForm" [formGroup]="potntial_auctionForm" novalidate class="login-form">
+        <div style="color: red;" *ngIf="errors">{{errors}}</div>
+        <div class="m-portlet__body">
+          <div class="m-form__section m-form__section--first">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="First Name" formControlName="first_name" name="first_name"
+                    [(ngModel)]="potntial_auction.first_name">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Last Name" formControlName="last_name" name="last_name"
+                    [(ngModel)]="potntial_auction.last_name">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="email" name="email"
+                    [(ngModel)]="potntial_auction.email">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Mobile No." formControlName="mobile_no" name="mobile_no"
+                    [(ngModel)]="potntial_auction.mobile_no">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-4 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Year" formControlName="year" name="year"
+                    [(ngModel)]="potntial_auction.year">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-4 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Make" formControlName="make" name="make"
+                    [(ngModel)]="potntial_auction.make">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-4 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Length" formControlName="length" name="length"
+                    [(ngModel)]="potntial_auction.length">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Broker Check" formControlName="broker_check" name="broker_check"
+                    [(ngModel)]="potntial_auction.broker_check">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group" *ngIf="potntial_auction.broker_check == 'Yes'">
+                <mat-form-field>
+                  <input matInput placeholder="Brokerage Name" formControlName="brokerage_name" name="brokerage_name"
+                    [(ngModel)]="potntial_auction.brokerage_name">
+                </mat-form-field>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="button" mat-raised-button color="accent" class="submit-button" aria-label="BACK"
+                (click)="Close()">
+                BACK
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .view_content {
+    background-color: #fff;
+    padding: 10px;
+  }
+</style>

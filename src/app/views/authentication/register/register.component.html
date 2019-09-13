@@ -1,0 +1,77 @@
+<div class="app flex-row align-items-center ">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card-group">
+          <div class="card" style="background-color: #ffffffcc;border-radius: 5px;">
+            <div class="card-body">
+              <h1>Register</h1>
+              <form name="registerForm" [formGroup]="registerForm" novalidate (ngSubmit)="userregister()" class="register-form">
+                <p class="text-muted">Create your account</p>
+                <div style="color: red;" *ngIf="errors">{{errors}}</div>
+                <div class="form-group register-full-width">
+                  <mat-form-field>
+                    <input matInput placeholder="First Name" formControlName="firstname" name="firstname" [(ngModel)]="user.firstname">
+                    <mat-error *ngIf="registerForm.hasError('required', ['firstname'])">
+                      First Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-group register-full-width">
+                  <mat-form-field>
+                    <input matInput placeholder="Last Name" formControlName="lastname" name="lastname" [(ngModel)]="user.lastname">
+                    <mat-error *ngIf="registerForm.hasError('required', ['lastname'])">
+                      Last Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-group register-full-width">
+                  <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email" name="email" [(ngModel)]="user.email">
+                    <mat-error *ngIf="registerForm.hasError('required', ['email'])">
+                      Email is required
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.hasError('email', ['email'])">
+                      Please enter a valid Email
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-group register-full-width">
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="Password" formControlName="password" name="password"
+                      [(ngModel)]="user.password">
+                    <mat-error *ngIf="registerForm.hasError('required', ['password'])">
+                      Password is required
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.hasError('minLength', ['password'])">
+                      Password length is minimum 6
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-group register-full-width">
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="Retype Password" formControlName="rpassword" name="rpassword"
+                      [(ngModel)]="user.rpassword">
+                    <mat-error *ngIf="registerFormErrors.rpassword.passwordsNotMatch">
+                      Retype Password do not match to Password
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="Register"
+                      [disabled]="registerForm.invalid">
+                      Register
+                    </button>
+                  </div>
+                  <div class="col-6 text-right">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

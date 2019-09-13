@@ -1,0 +1,47 @@
+<div class="animated fadeIn">
+  <div class="view_content">
+    <div class="modal-body">
+      <form name="userForm" [formGroup]="permission_categoryForm" novalidate (ngSubmit)="SavePermission_category()"
+        class="login-form">
+        <div style="color: red;" *ngIf="errors">{{errors}}</div>
+        <div class="m-portlet__body">
+          <div class="m-form__section m-form__section--first">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Permission Category Name" formControlName="value_text" name="value_text"
+                    [(ngModel)]="permission_category.value_text">
+                  <mat-error *ngIf="permission_categoryForm.hasError('required', ['value_text'])">
+                    Permission Category Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="SAVE" [disabled]="permission_categoryForm.invalid">
+                SAVE
+              </button>
+              <button type="button" mat-raised-button color="accent" class="submit-button" aria-label="CANCEL" (click)="cancel()">
+                CANCEL
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .view_content {
+    background-color: #fff;
+    padding: 10px;
+  }
+
+</style>

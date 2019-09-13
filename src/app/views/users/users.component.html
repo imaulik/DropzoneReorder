@@ -1,0 +1,172 @@
+<div class="animated fadeIn">
+  <div class="row" style="float: right;padding-bottom:15px;margin-right: 2px;">
+    <button type="button" [appHasPermission]='"user.add"' mat-raised-button class="mat-add-btn-color" aria-label="ADD"
+      tooltip="ADD" routerLink="/users/add">
+      ADD
+    </button>
+  </div>
+  <div class="clearfix"></div>
+  <div>
+    <mat-form-field style="background-color: #fff;padding: 20px;">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort($event)">
+
+        <ng-container matColumnDef="firstname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.firstname}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.lastname}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.roles[0].name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button type="button" [appHasPermission]='"user.edit"' [disabled]=true mat-raised-button aria-label="Active"
+              class="mat-add-btn-color" tooltip="Active" *ngIf="element.id == User_id">
+              Active
+            </button>
+            <button type="button" [appHasPermission]='"user.edit"' (click)="changeUserStatus(element.id,8)"
+              class="mat-add-btn-color" mat-raised-button aria-label="Active" tooltip="Active"
+              *ngIf="element.status.key_text=='Active' && element.id != User_id">
+              Active
+            </button>
+            <button type="button" [appHasPermission]='"user.edit"' (click)="changeUserStatus(element.id,7)"
+              class="mat-add-btn-color" style="background-color: #F64846 !important;"
+              *ngIf="element.status.key_text=='Inactive'" mat-raised-button aria-label="Inactive" tooltip="Inactive">
+              Inactive
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option">
+          <mat-header-cell *matHeaderCellDef> Option </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button type="button" [appHasPermission]='"user.view"' mat-raised-button mat-raised-button
+              class="mat-view-btn-color" aria-label="VIEW" tooltip="VIEW" routerLink="/users/view/{{element.id}}">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button type="button" [appHasPermission]='"user.edit"' mat-raised-button mat-raised-button
+              class="mat-edit-btn-color" aria-label="EDIT" tooltip="EDIT" routerLink="/users/edit/{{element.id}}">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" [appHasPermission]='"user.delete"' mat-raised-button mat-raised-button
+              class="mat-delete-btn-color" aria-label="DELETE" tooltip="DELETE" *ngIf="element.id != User_id"
+              (click)="openDeleteDialog(element.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons
+        (page)="applyPagination($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<div class="animated fadeIn">
+
+    <div class="row" style="float: right;padding-bottom:15px;">
+        <button type="button" [appHasPermission]='"user.add"' pTooltip="Add" tooltipPosition="top"  routerLink="/users/add" routerLinkActive="active" class="btn btn-primary m-btn--wide add-btn-right add_icon">
+            Add 
+        </button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row datatable-search" style="float: right;">
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom:0 none">
+            <span>Search :</span>
+            <input #gb type="text" pInputText size="50" placeholder="Search Record">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" >
+
+        <p-dataTable [value]="users" [lazy]="true" [rows]="10" [paginator]="true" [responsive]="true" [globalFilter]="gb" [rowsPerPageOptions]="[5,10,20,50]" [totalRecords]="totalRecords" (onLazyLoad)="loadUsers($event)" sortMode="single" #dt>  
+
+            <p-column field="firstname" header="Full Name" [sortable]="true" ></p-column>
+            <p-column field="lastname" header="Lastname" [sortable]="true" ></p-column>
+            <p-column field="email" header="Email" [sortable]="true" ></p-column>
+            <p-column field="role" header="Role" [sortable]="true" ></p-column>
+            <p-column header="Status" styleClass="col-button" field="status"> 
+                <ng-template pTemplate="header">
+                    Status
+                </ng-template>
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button type="button" [appHasPermission]='"user.edit"' [disabled]=true  class="btn-primary m-btn--wide" style="width: 70px;" style="width: 70px;background-color: #025e7c;border-color:#025e7c" *ngIf="user.id == User_id">Active</button>
+                    <button type="button" [appHasPermission]='"user.edit"' (click)="changeUserStatus(user.id,user.status)" class="btn-primary m-btn--wide" style="width: 70px;"  *ngIf="user.status=='Active' && user.id != User_id">Active</button>
+                    <button type="button" [appHasPermission]='"user.edit"' (click)="changeUserStatus(user.id,user.status)" class="btn-primary m-btn--wide" style="width: 70px;background-color: #f86c6b;border-color:#f86c6b" *ngIf="user.status=='Inactive'">Inactive</button>
+                </ng-template>
+            </p-column>
+            <p-column header="Action" styleClass="col-button" field="id">
+                <ng-template pTemplate="header">
+                    Action 
+                </ng-template>
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button pButton type="button" [appHasPermission]='"user.view"' pTooltip="View" tooltipPosition="top" routerLink="/users/view/{{user.id}}"  class="btn btn-success m-btn--wide " iconPos="right" >View</button>
+                    <button pButton type="button" [appHasPermission]='"user.edit"' pTooltip="Edit" tooltipPosition="top" routerLink="/users/edit/{{user.id}}"   class="btn btn-info m-btn--wide" iconPos="right" >Edit</button>
+                    <button pButton type="button" [appHasPermission]='"user.delete"'  pTooltip="Delete" tooltipPosition="top"  (click)="openUserDeleteDialog(user.id)"  class="btn btn-danger m-btn--wide" iconPos="right" *ngIf="user.id != User_id" >Delete</button>
+                    <button pButton [appHasPermission]='"user.delete"' [disabled]=true type="button"  pTooltip="Delete" tooltipPosition="top"  (click)="openUserDeleteDialog(user.id)" *ngIf="user.id == User_id"  class="btn btn-danger m-btn--wide" iconPos="right" >Delete</button>
+                </ng-template>
+            </p-column>
+            <p-footer>
+                <div class="ui-helper-clearfix">
+                    <b><span>
+                            Showing 
+                            <span *ngIf="totalRecords != 0">{{first+1}}</span>
+                            <span *ngIf="totalRecords == 0">{{first}}</span>
+                            to 
+                            <span *ngIf="totalRecords >= last">{{last}}</span>
+                            <span *ngIf="totalRecords < last">{{totalRecords}}</span>
+                            of 
+                            <span *ngIf="totalRecords >= totalNotFilterRecords">{{totalRecords}}</span>
+                            <span *ngIf="totalRecords < totalNotFilterRecords">{{totalRecords}}</span>
+                            entries 
+                            <span *ngIf="totalRecords > totalNotFilterRecords || totalRecords == 0">(filtered from {{totalNotFilterRecords}} total entries)</span>
+                        </span></b>
+                </div>
+            </p-footer>
+        </p-dataTable>
+    </div>
+    <div class="clearfix"></div>
+
+
+
+    <p-dialog header="{{action}} User" [(visible)]="DeleteModule">
+        <div class="modal-body">
+            Do you want to delete user?
+        </div>
+        <p-footer>
+            <button class="btn btn-primary" (click)="cancle()">
+                No
+            </button> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-primary" (click)="deleteUser(cancleUser)">
+                Yes
+            </button>
+        </p-footer>
+    </p-dialog>
+
+</div>-->

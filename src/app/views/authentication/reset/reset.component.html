@@ -1,0 +1,73 @@
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group">
+          <div class="card p-4">
+            <div class="card-body">
+              <h1>Reset</h1>
+              <form name="resetForm" [formGroup]="resetForm" novalidate (ngSubmit)="SaveReset()" class="login-form">
+                <input type="hidden" matInput formControlName="token" name="token" [(ngModel)]="user.token">
+                <p class="text-muted">Reset Your Password</p>
+                <div style="color: red;" *ngIf="errors">{{errors}}</div>
+                <div class="col-lg-12 spaceing">
+                  <div class="input-group mb-12">
+                    <mat-form-field>
+                      <input matInput placeholder="Email" formControlName="email" name="email" [(ngModel)]="user.email">
+                      <mat-error *ngIf="resetForm.hasError('required', ['email'])">
+                        Email is required
+                      </mat-error>
+                      <mat-error *ngIf="resetForm.hasError('email', ['email'])">
+                        Please enter a valid email address
+                      </mat-error>
+                    </mat-form-field>
+                    <input type="email" class="form-control" placeholder="Email ID" #email="ngModel" required name="email"
+                      pInputText [(ngModel)]="user.email">
+                  </div>
+                </div>
+                <div class="col-lg-12 spaceing">
+                  <div class="input-group mb-12">
+                    <mat-form-field>
+                      <input matInput type="password" placeholder="Password" formControlName="password" name="password"
+                        [(ngModel)]="user.password">
+                      <mat-error *ngIf="resetForm.hasError('required', ['password'])">
+                        Password is required
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-lg-12 spaceing">
+                  <div class="input-group mb-12">
+                    <mat-form-field>
+                      <input matInput type="password" placeholder="Retype Password" formControlName="rpassword" name="rpassword"
+                        [(ngModel)]="user.rpassword">
+                      <mat-error *ngIf="resetFormErrors.rpassword.passwordsNotMatch">
+                        Retype Password do not match to Password
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label=" Reset Password"
+                      [disabled]="resetForm.invalid">
+                      Reset Password
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+            <div class="card-body text-center">
+              <!--                            <div>
+                                                            <h2>Sign up</h2>
+                                                            <a [routerLink]="['/register']"><button type="button" class="btn btn-primary active mt-3">Register Now!</button></a>
+                                                        </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

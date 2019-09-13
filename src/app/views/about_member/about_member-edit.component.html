@@ -1,0 +1,69 @@
+<div class="animated fadeIn">
+  <div class="view_content">
+    <div class="modal-body">
+      <form name="userForm" [formGroup]="userForm" novalidate (ngSubmit)="SaveUser()" class="login-form"
+        enctype="multipart/form-data">
+        <div style="color: red;" *ngIf="errors">{{errors}}</div>
+        <div class="m-portlet__body">
+          <div class="m-form__section m-form__section--first">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-12 spaceing custom-upload">
+                <label for="image">
+                  Member Image
+                </label>
+                <dropzone #dropzonePicture [message]="'Click or drag images here to upload'"
+                  (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (addedFile)="onUploadadd($event)"
+                  (removedFile)="onUploadRemoved($event)"></dropzone>
+              </div>
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Member Name" formControlName="member_name" name="member_name"
+                    [(ngModel)]="user.member_name">
+                  <mat-error *ngIf="userForm.hasError('required', ['member_name'])">
+                    Member Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Member Designation" formControlName="member_designation"
+                    name="member_designation" [(ngModel)]="user.member_designation">
+                  <mat-error *ngIf="userForm.hasError('required', ['member_designation'])">
+                    Member Designation is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 form-group">
+                <div [ngxSummernote] height="300px" formControlName="member_description" [spellcheck]="true" [(ngModel)]="user.member_description">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="SAVE"
+                [disabled]="userForm.invalid">
+                SAVE
+              </button>
+              <button type="button" mat-raised-button color="accent" class="submit-button" aria-label="CANCEL"
+                (click)="cancel()">
+                CANCEL
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .view_content {
+    background-color: #fff;
+    padding: 10px;
+  }
+</style>

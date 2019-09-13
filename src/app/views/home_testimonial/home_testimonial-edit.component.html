@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+    <div class="view_content">
+        <div class="modal-body">
+            <form name="testimonialForm" [formGroup]="testimonialForm" novalidate (ngSubmit)="SaveData()" class="login-form">
+                <div style="color: red;" *ngIf="errors">{{errors}}</div>
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6 form-group">
+                                <mat-form-field>
+                                    <input required matInput placeholder="Author" formControlName="author" name="author"
+                                           [(ngModel)]="testimonial.author">
+                                    <mat-error *ngIf="testimonialForm.hasError('required', ['author'])">
+                                        Author is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <mat-form-field>
+                                    <input required matInput placeholder="Designation" formControlName="designation" name="designation"
+                                           [(ngModel)]="testimonial.designation">
+                                    <mat-error *ngIf="testimonialForm.hasError('required', ['designation'])">
+                                        Designation is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <mat-form-field>
+                                    <input required matInput placeholder="Title" formControlName="title" name="title"
+                                           [(ngModel)]="testimonial.title">
+                                    <mat-error *ngIf="testimonialForm.hasError('required', ['title'])">
+                                        Title is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <mat-form-field>
+                                <textarea required matInput  placeholder="Description" formControlName="description" rows="8"
+                                          [(ngModel)]="testimonial.description"></textarea>
+                                    <mat-error *ngIf="testimonialForm.hasError('required', ['description'])">
+                                        Description is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <mat-form-field>
+                                    <mat-select placeholder="Status" formControlName="status" name="status" [(ngModel)]="testimonial.status">
+                                        <mat-option [value]="0">
+                                            Active
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            InActive
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="testimonialForm.hasError('required', ['status'])">
+                                        Status is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="SAVE"
+                                    [disabled]="testimonialForm.invalid">
+                                SAVE
+                            </button>
+                            <button type="button" mat-raised-button color="accent" class="submit-button" aria-label="CANCEL"
+                                    (click)="cancel()">
+                                CANCEL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .view_content {
+        background-color: #fff;
+        padding: 10px;
+    }
+</style>

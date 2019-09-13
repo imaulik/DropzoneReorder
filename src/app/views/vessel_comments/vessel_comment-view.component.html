@@ -1,0 +1,50 @@
+<div class="animated fadeIn">
+  <div class="view_content">
+    <div class="modal-body">
+      <form name="vessel_commentForm" [formGroup]="vessel_commentForm" novalidate class="login-form">
+        <div style="color: red;" *ngIf="errors">{{errors}}</div>
+        <div class="m-portlet__body">
+          <div class="m-form__section m-form__section--first">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="user_email" name="user_email" [(ngModel)]="vessel_comment.user_email">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Vessel Title" formControlName="vessel_title" name="vessel_title" [(ngModel)]="vessel_comment.vessel_title">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <textarea matInput placeholder="Enter Comment" formControlName="comment" name="comment" [(ngModel)]="vessel_comment.comment_message"></textarea>
+                </mat-form-field>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="button" mat-raised-button color="accent" class="submit-button" aria-label="BACK" (click)="Close()">
+                BACK
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .view_content {
+    background-color: #fff;
+    padding: 10px;
+  }
+
+</style>

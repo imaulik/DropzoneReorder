@@ -1,0 +1,65 @@
+<div class="animated fadeIn">
+  <div class="view_content">
+    <form class="m-form" #roleForm="ngForm" novalidate>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="c-white"><i class="zmdi zmdi-info"></i> Role Details</h4>
+            </div>
+            <div class="card-body form-padding">
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <mat-form-field>
+                    <input matInput [disabled]='true' placeholder="Role Name" name="name" required #name="ngModel" id="name"
+                      [(ngModel)]="role.name">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="c-white"><i class="zmdi zmdi-info"></i> Permissions</h4>
+            </div>
+            <div class="card-body form-padding">
+              <div style="margin-bottom:15px;" class="row" *ngFor="let perm of permissions;let l = last;let i= index">
+                {{i+1}}. {{perm.value_text}}
+                <div class="col-md-12 row">
+                  <div class="col-md-3" *ngFor="let sub of perm.permission;let l = last;let i= index">
+                    <mat-checkbox [disabled]='true' name='permission_{{sub.id}}' [(ngModel)]='sub.is_used'>{{sub.name}}</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <!--                        <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="SAVE"
+                                [disabled]="!roleForm.form.valid">
+                            SAVE
+                        </button>-->
+            <button type="button" mat-raised-button color="accent" class="submit-button" (click)="cancel()">
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<style>
+  .view_content {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+  }
+
+</style>

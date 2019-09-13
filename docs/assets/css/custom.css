@@ -1,0 +1,229 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15 Feb, 2018, 11:55:35 AM
+    Author     : Admin
+*/
+.mat-add-btn-color{
+    background-color: #20A8D8 !important;
+    color: white !important;
+}
+button.submit-button.mat-raised-button.mat-accent {
+    margin-right: 10px;
+}
+.mat-edit-btn-color{
+    background-color: #43B4D4 !important;
+    color: white !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 50px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    padding: 0 11px!important;
+    margin-bottom: 2px !important;
+    margin-right: 5px !important;
+}
+.mat-view-btn-color{
+    background-color: #3EA662 !important;
+    color: white !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 50px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    padding: 0 11px!important;
+    margin-bottom: 2px !important;
+    margin-right: 5px !important;
+}
+.mat-delete-btn-color{
+    background-color: #F64846 !important;
+    color: white !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 50px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    padding: 0 11px!important;
+    margin-bottom: 2px !important;
+    margin-right: 5px !important;
+}
+html {
+    position: initial !important;
+}
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+    border-width: 0px;
+}
+span.Check_box_span {
+    padding: 20px;
+}
+.view_content
+{
+    background-color: #fff;
+    padding: 10px;
+}
+.div_img_show
+{
+    height: 150px;
+
+}
+.img_show
+{
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 0 auto;
+    position: absolute;
+    right: 0px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border: 1px solid #00000038;
+}
+.editor_disable {
+    background-color: #c2cfd6;
+    opacity: 1;
+    border-radius: 5px;
+    padding: 0.375rem 0.75rem;
+}
+
+.ui-datatable th.ui-state-default {
+    background-color: #fafafb;
+    padding: 9px 10px;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th {
+    padding: 7px 9px;
+    text-align: left;
+}
+
+
+
+.datatable-search .ui-widget-header {
+    background: none;
+    border: none;
+    padding-right: 0px !important;
+}
+
+.datatable-search {
+    margin-bottom: 10px;
+}
+
+.datatable-search .ui-widget-header input[type="text"] {
+    padding: 4px 8px;
+    margin-left: 10px;
+}
+.ui-datatable th.ui-state-active{color:#555555;}
+
+p-dialog[ng-reflect-visible="true"]:before {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.65);
+    top: 0;
+    left: 0px;
+    bottom:0px;
+    right: 0px;
+    z-index: 9999;
+}
+
+.ui-dialog.ui-dialog-draggable {
+    z-index: 9999 !important;
+}
+dropzone {
+    width: 180px !important;
+    position: relative;
+    height: 180px !important;
+    margin: 0 auto;
+}
+
+dropzone>.dropzone.dz-wrapper.dz-multiple.dz-started .dz-message {
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 0px;
+    right: 0px;
+}
+
+dropzone>.dropzone.dz-wrapper {
+    height: 100%;
+}
+
+dropzone>.dropzone.dz-wrapper .dz-preview {position: absolute;right: 0px;left: 0;top: 0;bottom: 0; border: 1px solid #00000038;}
+
+.dropzone .dz-preview .dz-image {
+    margin: 10px auto 0px;
+}
+
+dropzone>.dropzone.dz-wrapper .dz-message {
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0;
+    position: absolute !important;
+}
+.nav-dropdown .nav-dropdown-items > li a {
+    padding-left: 40px !important;
+}
+.spaceing {
+    margin-bottom: 12px;
+}
+.spaceing input , .spaceing select, .spaceing textarea{
+    border-radius: 5px;
+}
+.spaceing .alert-danger {
+    padding: 5px 10px;
+    margin-bottom: 0px;
+}
+.data_order_success {
+    background-color: #3EA662;
+    padding: 5px;
+    border-radius: 25px;
+    color:#fff;
+}
+.data_order_pending {
+    background-color: #E0A800;
+    padding: 5px;
+    border-radius: 25px;
+    color:#fff;
+}
+tr.ui-datatable-even {
+    background-color: #e4e4e4c9;
+}
+
+td.ng-star-inserted {
+    overflow: hidden;
+}
+
+ul.nav.nav-tabs.flex-column {
+    width: 25%;
+    float: left;
+    border: 1px solid #e3e3e3;
+}
+.tab-content {
+    width: 75%;
+    float: left;
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+}
+.custom-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+.mat-form-field {
+    width: 100%;
+}
+.mat-raised-button.mat-accent{
+    background-color: #20A8D8;
+}
+.mat-raised-button.mat-accent[disabled]{
+    background-color: rgba(0,0,0,.12);
+}
+.mat-input-element {
+    caret-color: #20A8D8;
+}
+.custom-full-width {
+    width: 100%;
+}

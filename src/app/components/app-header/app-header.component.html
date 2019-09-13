@@ -1,0 +1,26 @@
+<header class="app-header navbar">
+    <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" style="padding-left: 25px;padding-top: 14px;" routerLink="/dashboard"><i style="color:#20A8D8;">Admin Panel</i></a>
+    <button class="navbar-toggler d-md-down-none mr-auto" type="button" appSidebarToggler>
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+               <img *ngIf="user_profile.profile_image" src="{{IMAGE_URL}}{{user_profile.profile_image}}" class="img-avatar" alt="Profile Image"/>
+               <img *ngIf="!user_profile.profile_image" src="assets/img/avatars/default.jpeg" class="img-avatar" alt="Profile Image"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <div class="dropdown-header text-center"><strong>Settings</strong></div>
+                <a  class="dropdown-item" routerLink="/users/edit/{{user_profile.id}}"  ><i class="fa fa-user-circle-o" style="font-size:15px"></i> Profile</a>
+                <a  class="dropdown-item" (click)="logout()" ><i class="fa fa-lock"></i> Logout</a>
+            </div>
+        </li>
+    </ul>
+<!--    <button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>
+        <span class="navbar-toggler-icon"></span>
+    </button>-->
+</header>

@@ -1,0 +1,133 @@
+<div class="animated fadeIn">
+  <div class="view_content">
+    <div class="modal-body">
+      <form name="userForm" [formGroup]="userForm" novalidate (ngSubmit)="SaveUser()" class="login-form" enctype="multipart/form-data">
+        <div style="color: red;" *ngIf="errors">{{errors}}</div>
+        <div class="m-portlet__body">
+          <div class="m-form__section m-form__section--first">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-12 spaceing custom-upload">
+                <label for="image">
+                  Image
+                </label>
+                <dropzone #dropzonePicture [message]="'Click or drag images here to upload'" (error)="onUploadError($event)"
+                  (success)="onUploadSuccess($event)" (addedFile)="onUploadadd($event)" (removedFile)="onUploadRemoved($event)"></dropzone>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="First Name" formControlName="firstname" name="firstname" [(ngModel)]="user.firstname">
+                  <mat-error *ngIf="userForm.hasError('required', ['firstname'])">
+                    First Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+              <mat-form-field>
+                <input matInput placeholder="Last Name" formControlName="lastname" name="lastname" [(ngModel)]="user.lastname">
+                <mat-error *ngIf="userForm.hasError('required', ['lastname'])">
+                  Last Name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+              <div class="col-lg-12 form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="email" name="email" [(ngModel)]="user.email"
+                    (change)=CheckEmailRegistered()>
+                  <mat-error *ngIf="userForm.hasError('required', ['email'])">
+                    Email is required
+                  </mat-error>
+                  <mat-error *ngIf="userForm.hasError('email', ['email'])">
+                    Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+                <div style="color: red;margin-top: -15px;" *ngIf="emailAlready">
+                  Email Already Register
+                </div>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput type="text" placeholder="Username" formControlName="username" name="username"
+                         [(ngModel)]="user.username" (change)=CheckUsernameRegistered()>
+                  <mat-error *ngIf="userForm.hasError('required', ['username'])">
+                    Username is required
+                  </mat-error>
+
+                </mat-form-field>
+                <div style="color: red;margin-top: -15px;" *ngIf="usernameAlready">
+                  Username Already Register
+                </div>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <mat-select placeholder="Role" formControlName="role" name="role" [(ngModel)]="user.role">
+                    <mat-option *ngFor="let role of roles" [value]="role.id">
+                      {{role.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="userForm.hasError('required', ['role'])">
+                    Role is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <mat-select placeholder="Status" formControlName="status_id" name="status_id" [(ngModel)]="user.status_id">
+                    <mat-option *ngFor="let status of user_status" [value]="status.id">
+                      {{status.value_text}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="userForm.hasError('required', ['status_id'])">
+                    Status is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput type="password" placeholder="Password" formControlName="password" name="password"
+                    [(ngModel)]="user.password">
+                  <mat-error *ngIf="userForm.hasError('required', ['password'])">
+                    Password is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 form-group">
+                <mat-form-field>
+                  <input matInput type="password" placeholder="Password  (Confirm)" formControlName="passwordConfirm"
+                    name="passwordConfirm" [(ngModel)]="user.passwordConfirm">
+                  <mat-error *ngIf="userForm.hasError('required', ['passwordConfirm'])">
+                    Password confirmation is required
+                  </mat-error>
+                  <mat-error *ngIf="userFormErrors.passwordConfirm.passwordsNotMatch">
+                    Passwords must match
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="SAVE" [disabled]="userForm.invalid || emailAlready">
+                SAVE
+              </button>
+              <button type="button" mat-raised-button color="accent" class="submit-button" aria-label="CANCEL" (click)="cancel()">
+                CANCEL
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .view_content {
+    background-color: #fff;
+    padding: 10px;
+  }
+
+</style>

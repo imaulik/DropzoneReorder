@@ -1,0 +1,78 @@
+<div class="animated fadeIn">
+    <div class="row" style="float: right;padding-bottom:15px;margin-right: 2px;">
+        <button type="button" [appHasPermission]='"vessel.add"' mat-raised-button class="mat-add-btn-color" aria-label="ADD"
+                tooltip="ADD" routerLink="/home_testimonial/add">
+            ADD
+        </button>
+    </div>
+                <div class="clearfix"></div>
+                <div>
+                    <mat-form-field style="background-color: #fff;padding: 20px;">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                    <div class="mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort($event)">
+
+                            <ng-container matColumnDef="title">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="created_at">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="option">
+                                <mat-header-cell *matHeaderCellDef> Option </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <button type="button" [appHasPermission]='"vessel.edit"' mat-raised-button
+                                            mat-raised-button class="mat-edit-btn-color" aria-label="EDIT" tooltip="EDIT"
+                                            routerLink="/home_testimonial/edit/{{element.id}}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator #paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons
+                                       (page)="applyPagination($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+<style>
+    .subsidebar .cms-list {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+        cursor: pointer;
+        background-color: #fff;
+        height: 54px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0 0 0 20px;
+    }
+
+    .subsidebar .cms-title {
+        padding: 15px 15px;
+        background-color: #29363d;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .subsidebar .cms-list:hover {
+        background-color: #20a8d8;
+        transition: all 0.3s ease;
+        color: #FFF;
+    }
+
+    .subsidebar .cms-list.active {
+        background-color: #20a8d8;
+        transition: all 0.3s ease;
+        color: #FFF;
+    }
+</style>

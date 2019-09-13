@@ -1,0 +1,130 @@
+<div class="animated fadeIn">
+    <div class="app-subbody">
+        <div class="subsidebar" style="width:25%">
+            <div class="cms-title">
+                <span>CMS Pages</span>
+            </div>
+            <div class="cms-list" [class.active]="page_name.id == dtInstance.option_id"
+                *ngFor="let page_name of page_names" (click)="pageChange(page_name.id)">
+                {{page_name.value_text}}
+            </div>
+        </div>
+
+        <div class="app-submain">
+            <div class="animated fadeIn">
+                <div class="clearfix"></div>
+                <div>
+                    <mat-form-field style="background-color: #fff;padding: 20px;">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                    <div class="mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort($event)">
+
+                            <ng-container matColumnDef="title">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="created_at">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="option">
+                                <mat-header-cell *matHeaderCellDef> Option </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <!-- <button type="button" [appHasPermission]='"vessel.view"' mat-raised-button mat-raised-button
+                                class="mat-view-btn-color" aria-label="VIEW" tooltip="VIEW" routerLink="/users/view/{{element.id}}">
+                                <i class="fa fa-eye"></i>
+                                </button> -->
+                                    <button *ngIf="dtInstance.option_id != '25'" type="button" [appHasPermission]='"vessel.edit"' mat-raised-button
+                                        mat-raised-button class="mat-edit-btn-color" aria-label="EDIT" tooltip="EDIT"
+                                        routerLink="/cms_pages/edit/{{element.id}}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="dtInstance.option_id == '25'" type="button" [appHasPermission]='"vessel.edit"' mat-raised-button
+                                        mat-raised-button class="mat-edit-btn-color" aria-label="EDIT" tooltip="EDIT"
+                                        routerLink="/cms_pages/faq_edit/{{element.id}}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <!-- <button type="button" [appHasPermission]='"vessel.delete"' mat-raised-button
+                                        mat-raised-button class="mat-delete-btn-color" aria-label="DELETE"
+                                        tooltip="DELETE" (click)="openDeleteDialog(element.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </button> -->
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator #paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons
+                            (page)="applyPagination($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .app-subbody {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        overflow-x: hidden;
+
+    }
+
+    .app-submain {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+    }
+
+    .subsidebar {
+        margin: 0 30px 0 0px;
+        overflow: auto;
+        height: 374px;
+    }
+
+    .subsidebar .cms-list {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+        cursor: pointer;
+        background-color: #fff;
+        height: 54px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0 0 0 20px;
+    }
+
+    .subsidebar .cms-title {
+        padding: 15px 15px;
+        background-color: #29363d;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+            text-align: center;
+    }
+
+    .subsidebar .cms-list:hover {
+        background-color: #20a8d8;
+        transition: all 0.3s ease;
+        color: #FFF;
+    }
+
+    .subsidebar .cms-list.active {
+        background-color: #20a8d8;
+        transition: all 0.3s ease;
+        color: #FFF;
+    }
+</style>
