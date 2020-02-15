@@ -67,7 +67,7 @@
     "sweetalert": "^2.1.2",
     "sweetalert2": "^7.29.2",
     "ts-helpers": "^1.1.2",
-    "yarn": "^1.12.3",
+    "yarn": "^1.22.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
