@@ -47,7 +47,7 @@
     "internal-ip": "^3.0.1",
     "jquery": "^3.4.1",
     "material-ui": "^0.20.2",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "ng-drag-drop": "^5.0.0",
     "ng-lottie": "^0.3.2",
     "ng-pick-datetime": "^7.0.0",
